@@ -10,19 +10,19 @@ Vue.config.productionTip = false
 let app = null;
 
 // wait for firebase auth to init before creating the app
-firebase.auth().onAuthStateChanged(() => {
+// firebase.auth().onAuthStateChanged(() => {
 	
 	//init app if not already created
-	if(!app){
+	// if(!app){
 		new Vue({
 		  	el: '#app',
 		  	router,
 		  	components: { App },
 		 	template: '<App/>'
 		})
-	}
+	// }
 
 
-})
+// })
 
 /* eslint-disable no-new */
