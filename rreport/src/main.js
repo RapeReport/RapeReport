@@ -5,6 +5,12 @@ import App from './App'
 import router from './router'
 import firebase from 'firebase'
 
+import Vue from 'vue'
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+
+Vue.use(Buefy)
+
 Vue.config.productionTip = false
 
 let app = null;
