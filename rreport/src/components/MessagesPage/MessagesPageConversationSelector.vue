@@ -10,6 +10,9 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+import db from '@/firebase/init'
+import { mapGetters } from 'vuex'
 import MessagesPageConversationSelectorItem from '@/components/MessagesPage/MessagesPageConversationSelectorItem'
 export default {
   components: {
@@ -19,16 +22,28 @@ export default {
   data () {
     return {
       conversations: [
-        {id: 1, name: 'Daniel Richards'},
-        {id: 2, name: 'Daniel Richards'},
-        {id: 3, name: 'Daniel Richards'},
-        {id: 4, name: 'Daniel Richards'},
-        {id: 5, name: 'Daniel Richards'},
-        {id: 6, name: 'Daniel Richards'}
 
       ]
          
     }
+  },
+  methods: {
+    getConversations() {
+      db.collection('Assailants').where('Victims', "array-contains",this.getAuth.uid).get()
+      .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          this.conversations.push(doc.data())
+        })
+      })
+    },
+  },
+  computed: {
+    ...mapGetters([
+      'getAuth'
+    ])
+  },
+  mounted() {
+    this.getConversations()
   }
 }
 </script>
