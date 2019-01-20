@@ -14,13 +14,13 @@ Vue.use(Buefy)
 
 Vue.config.productionTip = false
 
-let app = null;
 
-// wait for firebase auth to init before creating the app
+
+// let app = null;
+// // wait for firebase auth to init before creating the app
 // firebase.auth().onAuthStateChanged(() => {
-	
-	//init app if not already created
-	// if(!app){
+// 	//init app if not already created
+// 	if(!app){
 		new Vue({
 			el: '#app',
 			store: store,
@@ -28,7 +28,7 @@ let app = null;
 		  	components: { App },
 		 	template: '<App/>'
 		})
-	// }
+// 	}
 
 
 // })

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase'
+
 // import HelloWorld from '@/components/HelloWorld'
 import WelcomePage from '@/components/WelcomePage/WelcomePage'
 import LandingPage from '@/components/LandingPage/LandingPage'
@@ -16,13 +18,17 @@ const router = new Router({
     {
       path: '/',
       name: 'LandingPage',
-      component: LandingPage
+      component: LandingPage,
+
     },
    
      {
       path: '/WelcomePage',
       name: 'WelcomePage',
-      component: WelcomePage
+      component: WelcomePage,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/miatest',
@@ -32,11 +38,30 @@ const router = new Router({
     {
       path: '/messages',
       name: 'MessagesPage',
-      component: MessagesPage
+      component: MessagesPage,
+      meta: {
+        requiresAuth: true
+      }
     }
 
   ]
 })
 
+router.beforeEach((to, from, next) => {
+	// check to see if route requires auth
+	if(to.matched.some(rec => rec.meta.requiresAuth)) {
+		// check auth state of user
+		let user = firebase.auth().currentUser
+		if(user){
+			// user signed in, proceed to route
+			next()
+		} else {
+			// no user signed in, redirect to login
+			next({ name: 'LandingPage' })
+		}
+	} else {
+		next()
+	}
+})
 
 export default router
