@@ -79,7 +79,7 @@
     						<a class="button Continue is-medium is-danger" @click="signUp()">Continue</a>
 			            </b-tab-item>
 
-			            <b-tab-item class="Welcome" label="Login"">
+			            <b-tab-item class="Welcome" label="Login"" style="padding-left: 2em">
 							<b-field label="Email">
 					            <b-input type="email"v-model="email">
 					            </b-input>
