@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import WelcomePage from '@/components/WelcomePage/WelcomePage'
 
 Vue.use(Router)
-import MiaTest from '@/tests/miatest'
+
 
 const router = new Router({
   mode: 'history',
@@ -13,11 +14,13 @@ const router = new Router({
       name: 'HelloWorld',
       component: HelloWorld
     },
-    {
-      path: '/miatest',
-      name: 'MiaTest',
-      component: MiaTest
-    }
+   
+     {
+      path: '/WelcomePage',
+      name: 'WelcomePage',
+      component: WelcomePage
+    },
+
   ]
 })
 
