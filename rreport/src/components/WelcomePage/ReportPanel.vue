@@ -1,5 +1,5 @@
 <template>
-	<article class="tile is-child notification is-link">
+	<article class="tile is-vertical is-child notification is-link">
 		<p class="title">Add Report</p>
 		<section style='text-align: left' >
 
@@ -67,6 +67,11 @@ export default {
 				console.log(this.assailant);
 				console.log(this.additionalInfo)
 				console.log(String(this.date));
+
+				this.additionalInfo = ''
+			  	this.assailant = ''
+			  	this.date = null
+
 			} 
 		}
 	  }
