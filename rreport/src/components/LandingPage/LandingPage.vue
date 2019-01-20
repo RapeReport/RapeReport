@@ -75,7 +75,7 @@
     						<a class="button Continue is-medium is-danger" @click="signUp()">Continue</a>
 			            </b-tab-item>
 
-			            <b-tab-item class="Welcome" label="Login"" style="padding-left: 2em">
+			            <b-tab-item class="Welcome" label="Login" style="padding-left: 2em">
 							<b-field label="Email">
 					            <b-input type="email"v-model="email">
 					            </b-input>
@@ -115,6 +115,7 @@
 
 import firebase from 'firebase'
 import db from '@/firebase/init'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
 	name: 'HomePage',
@@ -160,10 +161,14 @@ export default {
 	  },
 
 	  methods: {
+		...mapMutations([
+			'setAuth'
+		]),
 	  	login() {
 	  		firebase.auth().signInWithEmailAndPassword(this.email, this.password)
 	  		.then( cred => {
-          		this.$router.push('WelcomePage')
+				  this.setAuth(cred.user)
+				  this.$router.push('WelcomePage')
         	})
 	  		.catch(function(error) {
 			  // Handle Errors here.
@@ -182,7 +187,7 @@ export default {
 				firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
 				.then( cred => {
           			this.$router.push('WelcomePage')
-
+					this.setAuth(cred.user)
           			console.log(cred.user)
 
 					db.collection('users').doc(cred.user.uid).set({
