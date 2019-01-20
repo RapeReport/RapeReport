@@ -1,11 +1,15 @@
 <template>
     <div class="conversation-item content is-medium">
-        <p>{{conversation.name}}</p>
+        <p class='ConvoName'>{{conversation.name}} <span class='Count'>{{conversation.Victims.length}}</span></p>
     </div>
 
 </template>
 
 <script>
+
+import firebase from 'firebase'
+import db from '@/firebase/init'
+
 export default {
   name: 'MessagesPageConversationSelectorItem',
   props: {
@@ -15,10 +19,8 @@ export default {
   },
   data () {
     return {
-
-         
     }
-  }
+  },
 }
 </script>
 
@@ -29,6 +31,9 @@ export default {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: lightgray;
+}
+.Count {
+  text-align: right;
 }
 
 
