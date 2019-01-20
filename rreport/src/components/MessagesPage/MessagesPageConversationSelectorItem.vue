@@ -1,8 +1,8 @@
 <template>
-    <div class="conversation-item content is-medium">
+    <div class="conversation-item content is-medium" @click="selectConversation()">
       <div class="columns is-gapless">
       <div class="column is-three-quarters">
-        {{conversation.name}}
+        {{conversation.Name}}
       </div>
       <div class="column">
         <p class="VCount">{{conversation.Victims.length}}</p>

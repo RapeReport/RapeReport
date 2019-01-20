@@ -47,6 +47,9 @@ export default {
             content: message,
             time_sent: Date.now()
         })
+        .then(() => {
+            this.newMessage=null
+        })
     },
     getMessages(id) {
         console.log(id)
@@ -56,13 +59,32 @@ export default {
             console.log(1)
             snapshot.docChanges().forEach(change => {
                 if(change.type === 'added') {
-                    this.messages.push(change.doc.data())
+                    this.insertMessage(change.doc.data())
                     console.log(this.messages)
                     console.log(change.doc.data())
                 }
             })
         })
-
+    }, 
+    insertMessage(newMessage) {
+      if(this.messages.length === 0) {
+            this.messages.push(newMessage)
+        return
+      }
+      if(this.messages[0].time_sent > newMessage.time_sent) {
+          this.messages.unshift(newMessage)
+          return
+      }
+      if(this.messages[this.messages.length-1].time_sent < newMessage.time_sent) {
+          this.messages.push(newMessage)
+          return
+      }
+      for(let i = 0; i < this.messages.length;  i++){
+        if(this.messages[i].time_sent > newMessage.time_sent){
+          this.messages.splice(i, 0, newMessage)
+          return
+        }
+      }
     }
   },
   computed: {
