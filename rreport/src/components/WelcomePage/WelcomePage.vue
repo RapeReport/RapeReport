@@ -5,9 +5,35 @@
 	 <div class="tile is-parent " >
 		<article class="tile is-child box">
 			<p class="title">Welcome</p>
-			<p>Did shy say mention enabled through elderly improve. As at so believe account evening behaved hearted is. House is tiled we aware. It ye greatest removing concerns an overcame appetite. Manner result square father boy behind its his. Their above spoke match ye mr right oh as first. Be my depending to believing perfectly concealed household. Point could to built no hours smile sense. 
-
-			Throwing consider dwelling bachelor joy her proposal laughter. Raptures returned disposed one entirely her men ham. By to admire vanity county an mutual as roused. Of an thrown am warmly merely result depart supply. Required honoured trifling eat pleasure man relation. Assurance yet bed was improving furniture man. Distrusts delighted she listening mrs extensive admitting far.</p>
+			<p>
+				UCSC and Safe Sound is commited to helping victims of assualt. UCSC offers a variety of options to help cope and report incidents of assault. To get in person help we suggest you check out:
+			</p>
+			<br/>
+			<strong>
+				CARE
+			</strong>
+			<p>
+				CARE advocates will not share any information with Title IX, the police, parents, or anyone else without explicit permission. The only exceptions are instances of child abuse, elder or dependant abuse and imminent harm to self or others.
+			</p>
+			<br/>
+			<strong>
+				The Title IX Office
+			</strong>
+			<p>
+				The Title IX Office is committed to fostering a campus climate in which members of our community are protected from all forms of sex discrimination, including sexual harassment, sexual violence, and gender-based harassment and discrimination.
+			</p>
+			<br/>
+			<p>
+				Vicitms may contact <strong>SHOP</strong> (Student Health Outreach and Promotion), the UC Santa Cruz Women’s Center, Counseling and Psychological Services <strong>(CAPS)</strong>, or Employee Assistance Program <strong>(EAP)</strong> for more information, emotional support, individual and group counseling.
+			</p>
+			<br/>
+			<p>
+				For off campus aid we suggest looking into the <strong>Monarch Services</strong> and <strong>Walnut Avenue Women’s Center</strong> provide services to victims of sexual assault, dating violence, domestic violence and stalking in Santa Cruz County.
+			</p>
+			<br/>
+			<p>
+				For more information we suggest you visit: <a>https://police.ucsc.edu/community-information/victim-services.html</a>
+			</p>
 		</article>
 	</div>
 	<div class="tile is-parent">
@@ -17,7 +43,7 @@
 		</article>
 	</div>
 	<div class="tile is-parent">
-		<article class="tile is-child box">>
+		<article class="tile is-child box">
 			<p class="title">Previous Reports</p>
 			<div is="PrevReports"></div>
 		</article>
