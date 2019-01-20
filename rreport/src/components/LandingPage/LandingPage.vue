@@ -2,9 +2,7 @@
 	<div>
 	<header class="Title">Safe Sound</header>
 	<div class="tile is-ancestor Description">
-	  <div class="tile is-vertical is-7 ">
-	   
-
+		<div class="tile is-vertical is-7 ">
 
 		<div class="tile is-parent is-vertical">
 	        <article class="tile is-child notification is-info">
@@ -25,8 +23,6 @@
 	          <p class="subtitle Welcome">We aim to ensure your safery by using only '.ucsc.edu' emails, we ensure that a perpertrater cannot report themselves in the system in order to converse with their victims.</p>
 	        </article>
 	    </div>
-
-
 
 	  </div>
 	  <div class="tile is-vertical is-4">

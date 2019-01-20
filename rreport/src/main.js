@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuex from 'vuex'
+import { store } from './store/index.js'
 import firebase from 'firebase'
 
 import Buefy from 'buefy'
@@ -20,7 +22,8 @@ let app = null;
 	//init app if not already created
 	// if(!app){
 		new Vue({
-		  	el: '#app',
+			el: '#app',
+			store: store,
 		  	router,
 		  	components: { App },
 		 	template: '<App/>'
