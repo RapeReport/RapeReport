@@ -1,7 +1,7 @@
 <template>
     <div class="message columns">
         <div class="column">
-            {{message}}
+            {{message.content}}
         </div>
     </div>
 
@@ -12,7 +12,7 @@ export default {
   name: 'MessagesPageMessage',
   props: {
       message: {
-          type: String
+          type: Object
       }
   },
   data () {

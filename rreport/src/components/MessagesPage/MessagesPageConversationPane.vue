@@ -1,7 +1,7 @@
 <template>
     <div class="column ">
         <div class="max-height messageBox">
-            <MessagesPageMessage v-for="message in messages" :key="message"
+            <MessagesPageMessage v-for="(message,n) in messages" :key="n+message"
               :message="message"
             ></MessagesPageMessage>
         </div>
@@ -20,6 +20,9 @@
 
 <script>
 import MessagesPageMessage from '@/components/MessagesPage/MessagesPageMessage'
+import {mapGetters} from 'vuex'
+import firebase from 'firebase'
+import db from '@/firebase/init'
 export default {
   name: 'MessagesPageConversationPane',
   components: {
@@ -38,9 +41,40 @@ export default {
   },
   methods: {
     submit(message) {
-        this.messages.push(message)
-        console.log(this.messages)
+        db.collection('messages').add({
+            assailantId: this.getSelectedConversation.Name,
+            sender: this.getAuth.uid,
+            content: message,
+            time_sent: Date.now()
+        })
+    },
+    getMessages(id) {
+        console.log(id)
+        this.messages=[]
+        db.collection('messages').where('assailantId', '==', id)
+        .onSnapshot((snapshot) => {
+            console.log(1)
+            snapshot.docChanges().forEach(change => {
+                if(change.type === 'added') {
+                    this.messages.push(change.doc.data())
+                    console.log(this.messages)
+                    console.log(change.doc.data())
+                }
+            })
+        })
+
     }
+  },
+  computed: {
+      ...mapGetters([
+          'getSelectedConversation',
+          'getAuth'
+      ])
+  },
+  watch: {
+      getSelectedConversation: function(oldVal, newVal) {
+          this.getMessages(newVal.Name)
+      }
   }
 
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="conversation-item content is-medium">
+    <div class="conversation-item content is-medium" @click="selectConversation()">
         <p class='ConvoName'>{{conversation.name}} <span class='Count'>{{conversation.Victims.length}}</span></p>
     </div>
 
@@ -9,6 +9,7 @@
 
 import firebase from 'firebase'
 import db from '@/firebase/init'
+import {mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'MessagesPageConversationSelectorItem',
@@ -21,6 +22,16 @@ export default {
     return {
     }
   },
+  methods:{
+    ...mapMutations([
+        'setSelectedConversation'
+    ]),
+    selectConversation(){
+        console.log(this.conversation.Name)
+        this.setSelectedConversation(this.conversation)
+    }
+  },
+
 }
 </script>
 
