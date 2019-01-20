@@ -9,6 +9,9 @@
 </template>
 
 <script>
+    import json from '@/assets/table.json';
+// ....
+    json.forEach(x => { console.log(x.name); });
     export default {
         data() {
             return {

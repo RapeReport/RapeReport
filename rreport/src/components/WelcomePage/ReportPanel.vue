@@ -34,7 +34,7 @@
 
 		<b-field >
 			<p class="control">
-				<button class="button" @click='submitReport'>
+				<button class="button" @click='triggerEvent'>
 				  Submit
 				</button>
 			</p>
@@ -92,26 +92,16 @@ export default {
 				    console.error("Error Assailant: ", error);
 				});
             },
+            triggerEvent() {
+            	var jsonData = {};
+            	jsonData["Assailant"] = "ASSAILANT", //this.assailant,
+				jsonData["DateCreate"] =  Date.now(),
+				jsonData["DateOfIncident"] =  this.date,
+				jsonData["Victim"] =  this.getAuth.uid,
+            	this.$emit("newReport", jsonData)
+            },
 			submitReport() {
-
-// 				console.log('User',this.getAuth.uid)
-// 				db.collection("reports").doc(this.assailant).set({
-// 			    Victim: this.getAuth.uid,
-// 			    Description: this.additionalInfo,
-// 			    DateCreated: String(Date().now),
-// 			    DateOfIncident: this.date,
-// 			    Assailant: this.assailant,
-// 				})
-// 				.then(function() {
-// 				    console.log("Document successfully written!");
-
-// 				})
-// 				.catch(function(error) {
-// 				    console.error("Error writing document: ", error);
-// 				});
-
-// 				this.success();
-// =======
+				this.triggerEvent();
 				db.collection('reports').add({
 					Assailant: this.assailant,
 					DateCreate: Date.now(),

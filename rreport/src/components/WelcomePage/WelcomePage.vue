@@ -77,7 +77,7 @@
 
 	<div class="tile is-parent is-vertical">
 			
-		<ReportPanel/>
+		<ReportPanel v-on:newReport="newReportHandler($event)" />
         
         <article class="tile is-child notification is-danger">
 			<p class="title">Previous Reports</p>
@@ -129,6 +129,14 @@ export default {
 	  },
 
 	  methods: {
+	  	newReportHandler(reportEvent){
+	  		   this.$toast.open({
+                    message: reportEvent,
+                    type: 'is-danger',
+                    position: 'is-bottom',
+                }) 
+
+	  	}
 	  	
 
 	}
