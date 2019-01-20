@@ -46,7 +46,9 @@
 
 
 <script>
-
+import firebase from 'firebase'
+import db from '@/firebase/init'
+import { mapGetters } from 'vuex'
 export default {
 		data() {
 		  return {
@@ -63,16 +65,56 @@ export default {
                 })
             },
 			submitReport() {
-				this.success();
+				db.collection('reports').add({
+					Assailant: this.assailant,
+					DateCreate: Date.now(),
+					DateOfIncident: this.date,
+					Victim: this.getAuth.uid
+				})
+				.then(() => {
+					this.success();
+				})
+				db.collection('Assailants').doc(this.assailant).get()
+				.then(doc => {
+					console.log(1)
+					if(doc.exists) {
+						console.log(2)
+
+						db.collection('Assailants').doc(this.assailant).update({
+							"Victims": firebase.firestore.FieldValue.arrayUnion(getAuth.uid) 
+						})
+					} else {
+						console.log(3)
+						db.collection('Assailants').doc(this.assailant).set({
+							Name: this.assailant,
+							Victims: [this.getAuth.uid]
+						})
+
+						.then(() => {
+							console.log(4)
+										  	this.assailant = ''
+
+						})
+						.catch(err => {
+							console.log(5, err)
+						})
+						console.log(6)
+					}
+				})
 				console.log(this.assailant);
 				console.log(this.additionalInfo)
 				console.log(String(this.date));
 
 				this.additionalInfo = ''
-			  	this.assailant = ''
+			  	// this.assailant = ''
 			  	this.date = null
 
 			} 
+		}, 
+		computed: {
+			...mapGetters([
+				'getAuth'
+			])
 		}
 	  }
 
