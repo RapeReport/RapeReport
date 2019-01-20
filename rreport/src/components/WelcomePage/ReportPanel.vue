@@ -35,7 +35,7 @@
 
 		<b-field >
 			<p class="control">
-				<button class="button" @click='triggerEvent'>
+				<button class="button" @click='submitReport()'>
 				  Submit
 				</button>
 			</p>
