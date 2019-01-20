@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar is-dark" aria-label="main navigation">
     <div class="navbar-brand">
-        <router-link class="navbar-item" to="/">
+        <router-link class="navbar-item" :to="getAuth ? '/welcomepage':'/' ">
             <img src="@/assets/logo_transparent2.png" width="30" height="80">
             <p style="font-weight: bold; font-size: 20px; margin-left: .3em; "> SafeSound</p>
         </router-link>
