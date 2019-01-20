@@ -1,5 +1,5 @@
 <template>
-    <b-table :data="data" :columns="columns">
+    <b-table :data="tableData" :columns="columns">
         <template slot-scope="props" slot="header">
             <b-tooltip :label="props.column.meta" >
                 {{ props.column.label }}
@@ -9,31 +9,33 @@
 </template>
 
 <script>
-    import json from '@/assets/table.json';
-// ....
-    json.forEach(x => { console.log(x.name); });
+    
     export default {
+        props: {
+            tableData:{
+                type: Array
+            }
+        },
         data() {
             return {
+
                 data: [
-                    { 'name': 'Jesse Simmons', 'other victims': 0, 'date': '2016-10-15 ',},
-                    { 'name': 'John Jacobs', 'other victims': 0, 'date': '2016-12-15 ',},
-                    { 'name': 'Tina Gilbert', 'other victims': 0, 'date': '2016-04-26 ',},
+               
                 ],
                 columns: [
-                    {
-                        field: 'name',
-                        label: 'Name',
+                     {
+                        field: 'Assailant',
+                        label: 'Assailant',
                         meta: 'Name'
                     },
                     {
-                        field: 'other victims',
+                        field: 'num_victims',
                         label: 'Other victims',
                         centered: true,
                         meta: 'Other victims'
                     },
                     {
-                        field: 'date',
+                        field: 'DateOfIncident',
                         label: 'Date',
                         centered: true,
                         meta: 'Account created date'

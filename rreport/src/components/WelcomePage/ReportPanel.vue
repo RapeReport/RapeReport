@@ -95,10 +95,11 @@ export default {
             },
             triggerEvent() {
             	var jsonData = {};
-            	jsonData["Assailant"] = "ASSAILANT", //this.assailant,
+            	jsonData["Assailant"] = this.assailant,
 				jsonData["DateCreate"] =  Date.now(),
-				jsonData["DateOfIncident"] =  this.date,
+				jsonData["DateOfIncident"] =  "15 Jan 2018",
 				jsonData["Victim"] =  this.getAuth.uid,
+				jsonData['num_victims'] = '0',
             	this.$emit("newReport", jsonData)
             },
 			submitReport() {

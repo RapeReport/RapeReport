@@ -81,7 +81,7 @@
         
         <article class="tile is-child notification is-danger">
 			<p class="title">Previous Reports</p>
-			<PrevReports/>
+			<PrevReports :tableData="newData"/>
         </article>
     </div>
 
@@ -119,6 +119,7 @@ export default {
 	},
 	data() {
 	    return {
+	    	newData: []
 
 
 	    }
@@ -130,6 +131,7 @@ export default {
 
 	  methods: {
 	  	newReportHandler(reportEvent){
+	  		this.newData.push(reportEvent)
 	  		   this.$toast.open({
                     message: reportEvent,
                     type: 'is-danger',
