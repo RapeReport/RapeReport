@@ -30,6 +30,7 @@
 
 
 <script>
+import db from '@/firebase/init'
 
 export default {
 		data() {
@@ -47,6 +48,20 @@ export default {
                 })
             },
 			submitReport() {
+				db.collection("reports").doc(this.assailant).set({
+			    Victim: "my name",
+			    Description: this.additionalInfo,
+			    DateCreated: String(Date().now),
+			    DateOfIncident: this.date,
+			    Assailant: this.assailant,
+			})
+			.then(function() {
+			    console.log("Document successfully written!");
+			})
+			.catch(function(error) {
+			    console.error("Error writing document: ", error);
+			});
+
 				this.success();
 				console.log(this.assailant);
 				console.log(this.additionalInfo)
