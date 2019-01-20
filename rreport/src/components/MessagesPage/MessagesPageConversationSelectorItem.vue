@@ -1,6 +1,14 @@
 <template>
     <div class="conversation-item content is-medium">
-        <p class='ConvoName'>{{conversation.name}} <span class='Count'>{{conversation.Victims.length}}</span></p>
+      <div class="columns is-gapless">
+      <div class="column is-three-quarters">
+        {{conversation.name}}
+      </div>
+      <div class="column">
+        <p class="VCount">{{conversation.Victims.length}}</p>
+      </div>
+    </div>
+        <!-- <p class='ConvoName'>{{conversation.name}} {{conversation.Victims.length}}</p> -->
     </div>
 
 </template>
@@ -32,7 +40,7 @@ export default {
     border-bottom-width: 1px;
     border-bottom-color: lightgray;
 }
-.Count {
+.VCount {
   text-align: right;
 }
 
