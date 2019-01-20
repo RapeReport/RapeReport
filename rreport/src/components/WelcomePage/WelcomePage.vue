@@ -40,11 +40,10 @@
 	  <div class="tile is-vertical is-5">
 
 
-<div class="tile is-parent is-vertical">
-        <article class="tile is-child notification is-link">
-			<p class="title">Add Report</p>
+	<div class="tile is-parent is-vertical">
+			
 			<ReportPanel/>
-        </article>
+        
         <article class="tile is-child notification is-danger">
 			<p class="title">Previous Reports</p>
 			<PrevReports/>
