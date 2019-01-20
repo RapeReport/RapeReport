@@ -1,8 +1,8 @@
 <template>
-    <div class="column is-three-quarters">
-        <div class="max-height border">
+    <div class="column ">
+        <div class="max-height messageBox">
             <MessagesPageMessage v-for="message in messages" :key="message"
-            :message="message"
+              :message="message"
             ></MessagesPageMessage>
         </div>
         <div class="message-input">
@@ -59,6 +59,10 @@ export default {
 }
 .width { 
     width: 100%;
+}
+.messageBox {
+  border-radius: .3em;
+  background-color: white;
 }
 .message-input {
     display: flex;
