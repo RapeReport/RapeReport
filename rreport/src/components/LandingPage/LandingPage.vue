@@ -40,7 +40,7 @@
 		    	<section>
 			        <b-tabs  b-tabs type="is-boxed" expanded class="is-dark" position="is-right" size="is-large">
 			        <!-- v-model="activeTab"> -->
-			            <b-tab-item label="Sign Up">
+			            <b-tab-item label="Sign Up" style="padding-left: 2em">
 			                <section>
 						        <b-field class="Welcome" label="Name">
 						            <b-input placeholder="Optional"  v-model="name" ></b-input>
