@@ -1,9 +1,15 @@
 <template>
     <div class="column ">
         <div class="max-height messageBox">
-            <MessagesPageMessage v-for="(message,n) in messages" :key="n+message"
+            <div v-for="(message,n) in messages" :key="n+message">
+            <component
+              :is="(message.sender === getAuth.uid) ?  'MessagesPageMyMessage' :'MessagesPageMessage'"
               :message="message"
-            ></MessagesPageMessage>
+            ></component>
+<!--             <MessagesPageMyMessage
+              :message="yo">
+            </MessagesPageMyMessage> -->
+            </div>
         </div>
         <div class="message-input">
             <b-field position="is-centered">
@@ -20,13 +26,16 @@
 
 <script>
 import MessagesPageMessage from '@/components/MessagesPage/MessagesPageMessage'
+import MessagesPageMyMessage from '@/components/MessagesPage/MessagesPageMyMessage'
+
 import {mapGetters} from 'vuex'
 import firebase from 'firebase'
 import db from '@/firebase/init'
 export default {
   name: 'MessagesPageConversationPane',
   components: {
-      'MessagesPageMessage': MessagesPageMessage
+      'MessagesPageMessage': MessagesPageMessage,
+      'MessagesPageMyMessage': MessagesPageMyMessage
   },
   props: {
       conversation: {
@@ -95,6 +104,7 @@ export default {
   },
   watch: {
       getSelectedConversation: function(oldVal, newVal) {
+          console.log(newVal)
           this.getMessages(newVal.Name)
       }
   }
