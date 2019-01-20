@@ -7,7 +7,7 @@
         </router-link>
       </div>
           <div class='navbar-end'>
-          <div class='navbar-item' >Sign Out </div>
+          <div class='navbar-item' @click="signOut" >Sign Out </div>
 
     </div>
    
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   name: 'Navbar',
   data () {
@@ -34,6 +35,13 @@ export default {
   methods: {
       onMessagesClick() {
           this.$router.push('/messages')
+      },
+      signOut() {
+        firebase.auth().signOut().then(function() {
+          console.log("logout Succ");
+        }).catch(function(error) {
+          console.log("logout FAIL");
+      });  
       }
   }
 }
