@@ -1,7 +1,7 @@
 <template>
     <div class="column ">
         <div class="max-height messageBox">
-            <MessagesPageMessage v-for="message in messages" :key="message"
+            <MessagesPageMessage v-for="(message,n) in messages" :key="n+message"
               :message="message"
             ></MessagesPageMessage>
             <MessagesPageMyMessage
@@ -24,6 +24,10 @@
 <script>
 import MessagesPageMessage from '@/components/MessagesPage/MessagesPageMessage'
 import MessagesPageMyMessage from '@/components/MessagesPage/MessagesPageMyMessage'
+
+import {mapGetters} from 'vuex'
+import firebase from 'firebase'
+import db from '@/firebase/init'
 export default {
   name: 'MessagesPageConversationPane',
   components: {
@@ -43,9 +47,62 @@ export default {
   },
   methods: {
     submit(message) {
-        this.messages.push(message)
-        console.log(this.messages)
+        db.collection('messages').add({
+            assailantId: this.getSelectedConversation.Name,
+            sender: this.getAuth.uid,
+            content: message,
+            time_sent: Date.now()
+        })
+        .then(() => {
+            this.newMessage=null
+        })
+    },
+    getMessages(id) {
+        console.log(id)
+        this.messages=[]
+        db.collection('messages').where('assailantId', '==', id)
+        .onSnapshot((snapshot) => {
+            console.log(1)
+            snapshot.docChanges().forEach(change => {
+                if(change.type === 'added') {
+                    this.insertMessage(change.doc.data())
+                    console.log(this.messages)
+                    console.log(change.doc.data())
+                }
+            })
+        })
+    }, 
+    insertMessage(newMessage) {
+      if(this.messages.length === 0) {
+            this.messages.push(newMessage)
+        return
+      }
+      if(this.messages[0].time_sent > newMessage.time_sent) {
+          this.messages.unshift(newMessage)
+          return
+      }
+      if(this.messages[this.messages.length-1].time_sent < newMessage.time_sent) {
+          this.messages.push(newMessage)
+          return
+      }
+      for(let i = 0; i < this.messages.length;  i++){
+        if(this.messages[i].time_sent > newMessage.time_sent){
+          this.messages.splice(i, 0, newMessage)
+          return
+        }
+      }
     }
+  },
+  computed: {
+      ...mapGetters([
+          'getSelectedConversation',
+          'getAuth'
+      ])
+  },
+  watch: {
+      getSelectedConversation: function(oldVal, newVal) {
+          this.getMessages(newVal.Name)
+      }
   }
 
 }

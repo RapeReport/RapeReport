@@ -11,6 +11,9 @@
 
 
 <script>
+import firebase from 'firebase'
+import db from '@/firebase/init'
+import { mapGetters } from 'vuex'
 import MessagesPageConversationSelectorItem from '@/components/MessagesPage/MessagesPageConversationSelectorItem'
 export default {
   components: {
@@ -20,16 +23,29 @@ export default {
   data () {
     return {
       conversations: [
-        {id: 1, name: 'Daniel Richards', Victims: [0,1,2]},
-        {id: 2, name: 'Daniel Richards', Victims: [0,1]},
-        {id: 3, name: 'Daniel Richards', Victims: []},
-        {id: 4, name: 'Daniel Richards', Victims: [0]},
-        {id: 5, name: 'Daniel Richards', Victims: [2]},
-        {id: 6, name: 'Daniel Richards', Victims: [0,1,2]}
 
       ]
          
     }
+  },
+  methods: {
+    getConversations() {
+      db.collection('Assailants').where('Victims', "array-contains",this.getAuth.uid).get()
+      .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          this.conversations.push(doc.data())
+        })
+      })
+    },
+
+  },
+  computed: {
+    ...mapGetters([
+      'getAuth'
+    ])
+  },
+  mounted() {
+    this.getConversations()
   }
 }
 </script>
