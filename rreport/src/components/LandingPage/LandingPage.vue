@@ -77,7 +77,7 @@
 
 			            <b-tab-item class="Welcome" label="Login"" style="padding-left: 2em">
 							<b-field label="Email">
-					            <b-input type="email"v-model="email">
+					            <b-input type="email" v-model="email">
 					            </b-input>
 					        </b-field>
 
