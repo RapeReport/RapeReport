@@ -46,8 +46,9 @@
 
 
 <script>
+import {mapGetters} from 'vuex'
 import db from '@/firebase/init'
-
+import firebase from 'firebase'
 export default {
 		data() {
 		  return {
@@ -61,33 +62,70 @@ export default {
                 this.$toast.open({
                     message: 'Report submitted',
                     type: 'is-success'
-                })
+                }) 
+            },
+            handleAss(){
+            	var docRef = db.collection("Assailants").doc(this.assailant);
+
+				docRef.get().then(function(doc) {
+				    if (doc.exists) {
+				        console.log("Document data:", doc.data());
+				    } else {
+				        // doc.data() will be undefined in this case
+				        this.createAssailant();
+				    }
+				}).catch(function(error) {
+				    console.log("Error getting document:", error);
+				});
+            },
+            createAssailant() {
+            	db.collection("Assailants").doc(this.assailant).set({
+            		Name: this.assailant,
+            		Victims: firebase.firestore.FieldValue.arrayUnion(this.getAuth.uid)
+            	}, { merge: true }).then(function() {
+				    console.log(" Assailant Succ!");
+
+				})
+				.catch(function(error) {
+				    console.error("Error Assailant: ", error);
+				});
             },
 			submitReport() {
+				console.log('User',this.getAuth.uid)
 				db.collection("reports").doc(this.assailant).set({
-			    Victim: "my name",
+			    Victim: this.getAuth.uid,
 			    Description: this.additionalInfo,
 			    DateCreated: String(Date().now),
 			    DateOfIncident: this.date,
 			    Assailant: this.assailant,
-			})
-			.then(function() {
-			    console.log("Document successfully written!");
-			})
-			.catch(function(error) {
-			    console.error("Error writing document: ", error);
-			});
+				})
+				.then(function() {
+				    console.log("Document successfully written!");
+
+				})
+				.catch(function(error) {
+				    console.error("Error writing document: ", error);
+				});
 
 				this.success();
 				console.log(this.assailant);
 				console.log(this.additionalInfo)
 				console.log(String(this.date));
+			
 
+				
+				this.createAssailant();
 				this.additionalInfo = ''
 			  	this.assailant = ''
 			  	this.date = null
 
+
 			} 
+		},
+		computed: {
+			...mapGetters([
+				'getAuth'
+			])
 		}
 	  }
 
