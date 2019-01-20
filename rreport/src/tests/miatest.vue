@@ -1,7 +1,4 @@
 
-
-
-
 <template>
 <div id="app">
     <a class="button is-white">White</a>
