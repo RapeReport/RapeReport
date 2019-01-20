@@ -82,6 +82,11 @@ export default {
 				console.log(this.assailant);
 				console.log(this.additionalInfo)
 				console.log(String(this.date));
+
+				this.additionalInfo = ''
+			  	this.assailant = ''
+			  	this.date = null
+
 			} 
 		}
 	  }
