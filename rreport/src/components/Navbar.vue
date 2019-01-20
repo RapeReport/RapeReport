@@ -44,6 +44,7 @@ export default {
       onSignOutClick() {
           firebase.auth().signOut()
           this.setAuth(null)
+          this.$router.push("/")
           
 
       }
