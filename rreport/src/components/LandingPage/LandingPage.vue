@@ -28,24 +28,6 @@
 
 
 
-	    <!-- <div class="tile is-parent "> -->
-	   <!--    <article class="tile is-child notification ">
-	        <p class="title Welcome">Welcome</p>
-	        <p class="subtitle Welcome"> Rape Report is an website that seeks to unite victims of sexual assult in a safe space. We provide resources for you to find on campus help and aid you in reporting your assault to Title IX. Most importantly we give you a place to enter in your assulters name and find other victims of the assaulter. Your name is kept anonymous throughout this whole process and so are other victims. Our goals are to help you find relief, community, and help you to strengthen a case against a perpertrater by uniting with other victims.</p>
-
-	        <p class="subtitle Welcome">We aim to ensure your safery by using only '.ucsc.edu' emails, we ensure that a perpertrater cannot report themselves in the system in order to converse with their victims.</p>
-	        <br/>
-	        <br/>
-	        <br/>
-	        <br/>
-	        <br/>
-	        <br/>
-	        <br/>
-	        <br/>
-	        <br/>
-
-	      </article>
-	    </div> -->
 	  </div>
 	  <div class="tile is-vertical is-4">
 	   
@@ -61,48 +43,56 @@
 			            <b-tab-item label="Sign Up">
 			                <section>
 						        <b-field class="Welcome" label="Name">
-						            <b-input value="Kevin Garvey"></b-input>
+						            <b-input placeholder="Optional"  v-model="name" ></b-input>
 						        </b-field>
 
-						        <b-field class="Welcome" label="Email"
-						            type="is-danger"
-						            message="This email is invalid">
-						            <b-input type="email"
-						                value="john@"
-						                maxlength="30">
-						            </b-input>
+						        <b-field class="Welcome" label="Email">
+ 									<div class="field has-addons">
+ 										<p class="control is-expanded">
+									    <input class="input" type="text" placeholder="Cruzid" v-model="email" >
+										  </p>
+										  <p class="control">
+										    <a class="button is-static">
+										      @ucsc.edu
+										    </a>
+										  </p>  	
+									</div>
 						        </b-field>
+
+						       
 
 						        <b-field class="Welcome" label="Password"
 						            type="is-danger"
-						            :message="['Password is too short', 'Password must have at least 8 characters']">
-						            <b-input value="123" type="password" maxlength="30"></b-input>
+						            :message='passwordLength'>
+						            <b-input placeholder="password" type="password" v-model="password" maxlength="30"></b-input>
 						        </b-field>
 
 
 						        <b-field class="Welcome" label="Confirm Password"
 						            type="is-danger"
-						            :message="['Password is too short', 'Password must have at least 8 characters']">
-						            <b-input value="123" type="password" maxlength="30"></b-input>
+						            :message='PasswordCheck'
+						        >
+						            <b-input placeholder="password" type="password" v-model="rePassword" maxlength="30"></b-input>
 						        </b-field>
 
     						</section>
+    						<a class="button Continue is-medium is-danger" @click="signUp()">Continue</a>
 			            </b-tab-item>
 
 			            <b-tab-item class="Welcome" label="Login"">
 							<b-field label="Email">
-					            <b-input type="email"
-					                value="john@"
-					                maxlength="30">
+					            <b-input type="email"v-model="email">
 					            </b-input>
 					        </b-field>
 
 					        <b-field class="Welcome" label="Password">
-					            <b-input value="123" type="password" maxlength="30"></b-input>
+					            <b-input type="password" v-model="password"></b-input>
 						    </b-field>
+						    <a class="button Continue is-medium is-primary" @click="login()">Login</a>
 			            </b-tab-item>
 
 			        </b-tabs>
+			        
 		    </section>
 
 
@@ -127,8 +117,8 @@
 // import {mapActions, mapGetters, mapMutations} from 'vuex'
 // import HomeFeed from '@/components/home/HomeFeed'
 
-// import firebase from 'firebase'
-// import db from '@/firebase/init'
+import firebase from 'firebase'
+import db from '@/firebase/init'
 
 export default {
 	name: 'HomePage',
@@ -159,38 +149,53 @@ export default {
 	    // ...mapGetters([
 	    //   'getUserInfo',
 	    // ]),
-	    // textRemaining: function(){
-	    //     return 200 - this.newBio.length
-	    //   },
+	    passwordLength: function(){
+	    	if ( 8 > this.password.length )
+	        	return ['Password is too short.','Password must have at least 8 characters']
+	        return ''
+
+	    },
+	   	PasswordCheck: function(){
+	       	if ( this.rePassword != this.password )
+	        	return ["Passwords don't match"]
+	        return ''
+	    },
+
 	  },
 
 	  methods: {
+	  	login() {
+	  		firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+	  		.then( cred => {
+          		this.$router.push('WelcomePage')
+        	})
+	  		.catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  // ...
+			});
+	  	},
 	  	signUp() {
-			this.invalidEmail = false
-			this.emailInUse = false
-			this.invalidPassword = false
-			this.invalidRePassword = false
-			if (this.password != this.rePassword)
-			  this.invalidRePassword = true;
-			if (!this.invalidRePassword) {
-			  this.setLoading('true')
+			this.email = this.email + '@ucsc.edu'
+			console.log(this.email)
+			console.log(this.password)
+			console.log(this.rePassword)
 
-			  this.registerNewUser({email: this.email, password: this.password})
-			  .then(user => {
-			    this.user = user
-			    this.setLoading('false')
-			    this.changeState('addInfo')
-			  })
-			  .catch(err => {
-			    this.setLoading('false')
-			    if (err.code == "auth/invalid-email")
-			      this.invalidEmail = true
-			    else if (err.code == "auth/weak-password")
-			      this.invalidPassword = true
-			    else if (err.code == "auth/email-already-in-use")
-			      this.emailInUse = true
-			  })
-			}
+			if (this.password == this.rePassword) {
+				firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+				.then( cred => {
+          			this.$router.push('WelcomePage')
+        		})
+				.catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					console.log(errorCode)
+					console.log(errorMessage)
+					// ...
+				});
+		    }
 		}
 
 	}
@@ -213,6 +218,16 @@ export default {
 }
 .Welcome{
 	text-align: left;
+}
+.Continue{
+	position: relative;
+	z-index: 2;
+	top: .4em;
+}
+.Login_B{
+/*	position: relative;
+	z-index: 2;
+	left: 18em;*/
 }
 .fact{
 	font-weight: bold;
