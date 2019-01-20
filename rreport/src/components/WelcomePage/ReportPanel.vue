@@ -117,27 +117,30 @@ export default {
 				.then(doc => {
 					console.log(1)
 					if(doc.exists) {
-						console.log(2)
-
 						db.collection('Assailants').doc(this.assailant).update({
 							"Victims": firebase.firestore.FieldValue.arrayUnion(getAuth.uid) 
 						})
+						.then(()=> {
+							this.assailant = ''
+							this.date = null
+							this.additionalInfo = ''
+						})
 					} else {
-						console.log(3)
 						db.collection('Assailants').doc(this.assailant).set({
 							Name: this.assailant,
 							Victims: [this.getAuth.uid]
 						})
 
 						.then(() => {
-							console.log(4)
-										  	this.assailant = ''
+							this.assailant = ''
+							this.date = null
+							this.additionalInfo = ''
+
 
 						})
 						.catch(err => {
 							console.log(5, err)
 						})
-						console.log(6)
 					}
 				})
 				console.log(this.assailant);
@@ -149,7 +152,7 @@ export default {
 				//this.createAssailant();
 				this.additionalInfo = ''
 			  	// this.assailant = ''
-			  	this.date = null
+			  	// this.date = null
 
 
 			},

@@ -132,11 +132,6 @@ export default {
 	  methods: {
 	  	newReportHandler(reportEvent){
 	  		this.newData.push(reportEvent)
-	  		   this.$toast.open({
-                    message: reportEvent,
-                    type: 'is-danger',
-                    position: 'is-bottom',
-                }) 
 
 	  	}
 	  	
