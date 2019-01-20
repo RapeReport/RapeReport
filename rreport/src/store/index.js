@@ -13,14 +13,14 @@ export const store = new Vuex.Store({
 
 	state: {
         auth: null,
-        user: null
+        selectedConversation: null,
 	},
 	getters: {
         getAuth: (state) => {
             return state.auth
         },
-        getUser: (state) => {
-            return state.user
+        getSelectedConversation: (state) => {
+            return state.selectedConversation
         }
  
 	},
@@ -28,9 +28,9 @@ export const store = new Vuex.Store({
         setAuth: (state, payload) => {
             state.auth = payload
         },
-        setUser: (state, payload) => {
-            state.user = payload
-        },
+        setSelectedConversation: (state, payload) => {
+            state.selectedConversation = payload
+        }        
 
 	},
 	actions: {
