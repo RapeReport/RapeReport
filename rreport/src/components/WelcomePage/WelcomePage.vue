@@ -9,30 +9,65 @@
 				UCSC and Safe Sound are commited to helping victims of assualt. Safe Sound allows assault vicitims to unite and communicate anonymously with other vicitms of the same assaulter, to report an incident use the 'Add Report' Form. UCSC offers a variety of options to help cope and report incidents of assault. To get in person help we suggest you check out:
 			</p>
 			<br/>
-			<strong class="CARE" style="font-size:1.2em">
-				CARE
-			</strong>
+			<a href="https://care.ucsc.edu/">
+				<strong class="CARE" style="font-size:1.2em" >
+					CARE
+				</strong>
+			</a>
 			<p style="font-size:1.2em">
 				CARE advocates will not share any information with Title IX, the police, parents, or anyone else without explicit permission. The only exceptions are instances of child abuse, elder or dependant abuse and imminent harm to self or others.
 			</p>
 			<br/>
-			<strong class="Title9" style="font-size:1.2em">
-				The Title IX Office
-			</strong>
+			<a href="https://titleix.ucsc.edu/">
+				<strong class="Title9" style="font-size:1.2em">
+					The Title IX Office
+				</strong>
+			</a>
 			<p style="font-size:1.2em">
 				The Title IX Office is committed to fostering a campus climate in which members of our community are protected from all forms of sex discrimination, including sexual harassment, sexual violence, and gender-based harassment and discrimination.
 			</p>
 			<br/>
 			<p style="font-size:1.2em">
-				Vicitms may contact <strong class="SHOP">SHOP</strong> (Student Health Outreach and Promotion), the UC Santa Cruz Women’s Center, Counseling and Psychological Services <strong class="CAPS">(CAPS)</strong>, or Employee Assistance Program <strong class="EAP">(EAP)</strong> for more information, emotional support, individual and group counseling.
+				Vicitms may contact 
+				<a href="https://shop.ucsc.edu/">
+					<strong class="SHOP">
+						SHOP
+					</strong> 
+				</a>
+
+				(Student Health Outreach and Promotion), the UC Santa Cruz Women’s Center, Counseling and Psychological Services 
+				<a href="https://caps.ucsc.edu/">
+					<strong class="CAPS">
+						(CAPS)
+					</strong>
+				</a>
+				, or Employee Assistance Program 
+				<a href="https://shr.ucsc.edu/benefits/eap/">
+					<strong class="EAP">
+						(EAP)
+					</strong> 
+				</a>
+				for more information, emotional support, individual and group counseling.
 			</p>
 			<br/>
 			<p style="font-size:1.2em">
-				For off campus aid we suggest looking into the <strong class="Monarch">Monarch Services</strong> and <strong class="Walnut">Walnut Avenue Women’s Center</strong> provide services to victims of sexual assault, dating violence, domestic violence and stalking in Santa Cruz County.
+				For off campus aid we suggest looking into the 
+				<a href="http://www.monarchscc.org/">
+					<strong class="Monarch">
+						Monarch Services
+					</strong>
+				</a>
+				and 
+				<a href="https://www.wafwc.org/">
+					<strong class="Walnut">
+						Walnut Avenue Women’s Center
+					</strong> 
+				</a>
+				provide services to victims of sexual assault, dating violence, domestic violence and stalking in Santa Cruz County.
 			</p>
 			<br/>
 			<p style="font-size:1.2em">
-				For more information we suggest you visit: <a>https://police.ucsc.edu/community-information/victim-services.html</a>
+				For more information we suggest you visit: <a href="https://police.ucsc.edu/community-information/victim-services.html">https://police.ucsc.edu/community-information/victim-services.html</a>
 			</p>
 	    </div>
 
