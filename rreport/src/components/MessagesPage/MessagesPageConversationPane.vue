@@ -1,12 +1,15 @@
 <template>
     <div class="column ">
         <div class="max-height messageBox">
-            <MessagesPageMessage v-for="(message,n) in messages" :key="n+message"
+            <div v-for="(message,n) in messages" :key="n+message">
+            <component
+              :is="(message.sender === getAuth.uid) ? 'MessagesPageMessage': 'MessagesPageMyMessage'"
               :message="message"
-            ></MessagesPageMessage>
-            <MessagesPageMyMessage
+            ></component>
+            <!-- <MessagesPageMyMessage
               :message="yo">
-            </MessagesPageMyMessage>
+            </MessagesPageMyMessage> -->
+            </div>
         </div>
         <div class="message-input">
             <b-field position="is-centered">

@@ -1,7 +1,7 @@
 <template>
     <div class="message columns">
-        <div class="column">
-            {{message}}
+        <div class="column ">
+            {{message.content}}
         </div>
     </div>
 
@@ -12,7 +12,7 @@ export default {
   name: 'MessagesPageMyMessage',
   props: {
       message: {
-          type: String
+          type: Object
       }
   },
   data () {
@@ -33,7 +33,7 @@ export default {
         /* height: 50px; */
         width: 80%;
         margin: 10px;
-        position: absolute;
+        /* position: absolute; */
         right: 3em;
     }
 
