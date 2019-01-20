@@ -33,7 +33,7 @@ export default {
         /* height: 50px; */
         width: 80%;
         margin: 10px;
-        /* position: absolute; */
+        float: right;
         right: 3em;
     }
 

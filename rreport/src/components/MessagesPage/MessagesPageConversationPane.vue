@@ -3,10 +3,10 @@
         <div class="max-height messageBox">
             <div v-for="(message,n) in messages" :key="n+message">
             <component
-              :is="(message.sender === getAuth.uid) ? 'MessagesPageMessage': 'MessagesPageMyMessage'"
+              :is="(message.sender === getAuth.uid) ?  'MessagesPageMyMessage' :'MessagesPageMessage'"
               :message="message"
             ></component>
-            <!-- <MessagesPageMyMessage
+<!--             <MessagesPageMyMessage
               :message="yo">
             </MessagesPageMyMessage> -->
             </div>
@@ -104,6 +104,7 @@ export default {
   },
   watch: {
       getSelectedConversation: function(oldVal, newVal) {
+          console.log(newVal)
           this.getMessages(newVal.Name)
       }
   }
