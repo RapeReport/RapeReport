@@ -1,13 +1,22 @@
 <template>
 <nav class="navbar is-dark" aria-label="main navigation">
     <div class="navbar-brand">
-        <router-link class="navbar-item" to="/">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-        </router-link>
+        <div class="navbar-item">
+            <router-link to="/">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </router-link>
+        </div>
     </div>
     <div class="navbar-menu">
         <div class="navbar-start">
-            <a>Home</a>
+            <div class="navbar-item">
+                <a>Home</a>
+            </div>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <a @click="onMessagesClick()">Messages</a>
+            </div>
         </div>
         
     </div>
@@ -23,6 +32,11 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods: {
+      onMessagesClick() {
+          this.$router.push('/messages')
+      }
   }
 }
 </script>
