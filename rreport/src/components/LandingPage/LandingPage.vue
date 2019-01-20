@@ -188,7 +188,6 @@ export default {
 				.then( cred => {
           			this.$router.push('WelcomePage')
 					this.setAuth(cred.user)
-          			console.log(cred.user)
 
 					db.collection('users').doc(cred.user.uid).set({
 						email: this.email,

@@ -5,12 +5,7 @@
 
 
 		<div class="columns is-mobile">
-		      <div class="column">
-				<strong>Assaulter</strong>
-					<b-field class='fieldName' label="">
-						<b-input placeholder="Name" v-model="assailant"></b-input>
-					</b-field>
-		      </div>
+
 		      <div class="column">
 		        <strong>Date of incident</strong>
 				<b-field label="" >		   
@@ -20,6 +15,12 @@
 		           		v-model="date">
 		            </b-datepicker>
 				</b-field>
+		      </div>
+		      <div class="column">
+				<strong>Assaulter</strong>
+					<b-field class='fieldName' label="">
+						<b-input placeholder="Name" v-model="assailant"></b-input>
+					</b-field>
 		      </div>
 		    </div>
 

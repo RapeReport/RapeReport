@@ -4,6 +4,9 @@
             <MessagesPageMessage v-for="message in messages" :key="message"
               :message="message"
             ></MessagesPageMessage>
+            <MessagesPageMyMessage
+              :message="yo">
+            </MessagesPageMyMessage>
         </div>
         <div class="message-input">
             <b-field position="is-centered">
@@ -20,10 +23,12 @@
 
 <script>
 import MessagesPageMessage from '@/components/MessagesPage/MessagesPageMessage'
+import MessagesPageMyMessage from '@/components/MessagesPage/MessagesPageMyMessage'
 export default {
   name: 'MessagesPageConversationPane',
   components: {
-      'MessagesPageMessage': MessagesPageMessage
+      'MessagesPageMessage': MessagesPageMessage,
+      'MessagesPageMyMessage': MessagesPageMyMessage
   },
   props: {
       conversation: {
