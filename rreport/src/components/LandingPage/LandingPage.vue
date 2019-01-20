@@ -40,7 +40,7 @@
 		    	<section>
 			        <b-tabs  b-tabs type="is-boxed" expanded class="is-dark" position="is-right" size="is-large">
 			        <!-- v-model="activeTab"> -->
-			            <b-tab-item label="Sign Up" style="padding-left: 2em">
+			            <b-tab-item label="Sign Up">
 			                <section>
 						        <b-field class="Welcome" label="Name">
 						            <b-input placeholder="Optional"  v-model="name" ></b-input>
@@ -186,6 +186,22 @@ export default {
 				firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
 				.then( cred => {
           			this.$router.push('WelcomePage')
+
+          			console.log(cred.user)
+
+					db.collection('users').doc(cred.user.uid).set({
+						email: this.email,
+						uid: cred.user.uid,
+						name: this.name,
+					})
+					.then(() => {
+						console.log('User Successfully Added')
+					})
+					.catch((err) => {
+						console.log(err)
+					})
+
+
         		})
 				.catch(function(error) {
 					// Handle Errors here.
