@@ -8,6 +8,13 @@
       </div>
           <div class='navbar-end'>
           <div class='navbar-item' >Sign Out </div>
+
+    </div>
+   
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <a @click="onMessagesClick()">Messages</a>
+            </div>
         </div>
     </div>
     
@@ -23,6 +30,11 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods: {
+      onMessagesClick() {
+          this.$router.push('/messages')
+      }
   }
 }
 </script>
