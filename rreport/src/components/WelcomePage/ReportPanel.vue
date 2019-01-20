@@ -1,5 +1,5 @@
 <template>
-	<article class="tile is-vertical is-child notification is-link">
+	<article class="tile is-child notification is-link">
 		<p class="title">Add Report</p>
 		<section style='text-align: left' >
 
