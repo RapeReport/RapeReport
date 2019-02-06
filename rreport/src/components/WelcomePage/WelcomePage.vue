@@ -80,7 +80,7 @@
 		<ReportPanel v-on:newReport="newReportHandler($event)" />
         
         <article class="tile is-child notification is-danger">
-			<p class="title">Previous Reports</p>
+			<p class="title">Your Previous Reports</p>
 			<PrevReports :tableData="newData"/>
         </article>
     </div>
